@@ -17,8 +17,8 @@ public class PSPResource {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public PaymentResult payments(PaymentRequest request) {
-    var value = BigDecimal.valueOf(Double.valueOf(request.getValue()));
-    if (BigDecimal.valueOf(400).compareTo(value) > 0 ){
+    var value = BigDecimal.valueOf(Double.parseDouble(request.getValue()));
+    if (BigDecimal.valueOf(400).compareTo(value) < 0 ){
       return new PaymentResult(UUID.randomUUID().toString(),"declined", LocalDateTime.now());
     }
     return new PaymentResult(UUID.randomUUID().toString(),"approved", LocalDateTime.now());
